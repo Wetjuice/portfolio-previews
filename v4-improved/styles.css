@@ -143,19 +143,19 @@ ul { list-style: none; }
 .hero-content { max-width: 680px; }
 .hero-label {
   font-family: var(--font-head);
-  font-size: 0.78rem;
+  font-size: 0.88rem;
   font-weight: 600;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 20px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 0;
 }
 .hero-label::before {
   content: '';
-  display: block;
+  display: none;
   width: 24px;
   height: 2px;
   background: var(--accent);
@@ -180,8 +180,8 @@ ul { list-style: none; }
 }
 .hero-bio {
   font-size: 1rem;
-  color: var(--text-muted);
-  line-height: 1.7;
+  color: var(--gray-light);
+  line-height: 1.75;
   max-width: 540px;
   margin-bottom: 44px;
 }
@@ -586,7 +586,7 @@ ul { list-style: none; }
 /* ── STATS STRIP ── */
 .stats-strip {
   background: var(--accent);
-  padding: 32px 0;
+  padding: 48px 0;
 }
 .stats-strip .container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; text-align: center; }
 .stat-num {
@@ -721,6 +721,22 @@ select.form-input {
 .fade-up.visible { opacity: 1; transform: translateY(0); }
 
 /* nav-overlay defined in responsive section below */
+
+/* Staggered fade-up for grids */
+.phil-primary-grid .fade-up:nth-child(1) { transition-delay: 0s; }
+.phil-primary-grid .fade-up:nth-child(2) { transition-delay: 0.1s; }
+.phil-primary-grid .fade-up:nth-child(3) { transition-delay: 0.2s; }
+.phil-secondary-grid .fade-up:nth-child(1) { transition-delay: 0.05s; }
+.phil-secondary-grid .fade-up:nth-child(2) { transition-delay: 0.15s; }
+.phil-secondary-grid .fade-up:nth-child(3) { transition-delay: 0.25s; }
+.stats-strip .fade-up:nth-child(1) { transition-delay: 0s; }
+.stats-strip .fade-up:nth-child(2) { transition-delay: 0.08s; }
+.stats-strip .fade-up:nth-child(3) { transition-delay: 0.16s; }
+.stats-strip .fade-up:nth-child(4) { transition-delay: 0.24s; }
+.timeline-item.fade-up:nth-child(1) { transition-delay: 0s; }
+.timeline-item.fade-up:nth-child(2) { transition-delay: 0.1s; }
+.timeline-item.fade-up:nth-child(3) { transition-delay: 0.18s; }
+.timeline-item.fade-up:nth-child(4) { transition-delay: 0.26s; }
 
 /* ══════════════════════════════════════════
    RESPONSIVE — mobile-first overhaul

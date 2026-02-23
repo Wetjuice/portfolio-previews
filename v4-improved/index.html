@@ -547,7 +547,7 @@
       </div>
       <div class="fade-up">
         <div class="stat-num">10+</div>
-        <div class="stat-label">Shipped Products</div>
+        <div class="stat-label">Titles Shipped</div>
       </div>
       <div class="fade-up">
         <div class="stat-num">6+</div>
@@ -560,7 +560,7 @@
   <section class="experience">
     <div class="container">
       <div class="section-header fade-up">
-        <div class="section-label">The Work That Shaped the Thinking</div>
+        <div class="section-label">Career</div>
         <h2 class="section-title">Experience</h2>
       </div>
       <div class="timeline">
@@ -659,6 +659,7 @@
     <div class="container footer-inner">
       <div class="footer-logo">M<span>B</span></div>
       <div class="footer-copy">© <span>2026</span> Michael Berman · All rights reserved</div>
+      <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--accent);letter-spacing:0.1em;display:flex;align-items:center;gap:6px;"><span style="width:4px;height:4px;background:var(--accent);border-radius:50%;animation:led-pulse 1.8s ease-in-out infinite;display:inline-block;"></span>Game Director · Sony Bend · Active</div>
       <div class="footer-links">
         <a href="MBerman-Resume.pdf" target="_blank">Resume</a>
         <a href="https://www.linkedin.com/in/bermandesign" target="_blank">LinkedIn</a>
@@ -1018,6 +1019,39 @@ document.getElementById('hamburger').addEventListener('click', () => {
 document.getElementById('nav-close').addEventListener('click', () => {
   document.getElementById('nav-overlay').classList.remove('open');
 });
+
+// Active nav state
+var currentPage = window.location.pathname.split('/').pop() || 'index.html';
+document.querySelectorAll('.nav-links a').forEach(function(a) {
+  var href = a.getAttribute('href');
+  if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+    a.classList.add('active');
+  }
+});
+
+// Counter animation for stats
+function animateCounters() {
+  document.querySelectorAll('.stat-num').forEach(function(el) {
+    var text = el.textContent;
+    var num = parseInt(text);
+    var suffix = text.replace(/[0-9]/g, '');
+    if (isNaN(num)) return;
+    var start = 0;
+    var duration = 900;
+    var step = 16;
+    var increment = num / (duration / step);
+    var timer = setInterval(function() {
+      start += increment;
+      if (start >= num) { start = num; clearInterval(timer); }
+      el.textContent = Math.floor(start) + suffix;
+    }, step);
+  });
+}
+var statsObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if (e.isIntersecting) { animateCounters(); statsObserver.disconnect(); }});
+}, { threshold: 0.5 });
+var statsStrip = document.querySelector('.stats-strip');
+if (statsStrip) statsObserver.observe(statsStrip);
 </script>
 </body>
 </html>
